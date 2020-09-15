@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
-import { render } from 'react-dom'
-import App from '.components/App'
+
 
 const members = [
     {name: 'Gabby', email: 'gabby@gabby.com' , role: 'Web Development'},
-    {hame: 'Michael', email: 'michael@michael.com', role: 'Accounting'},
+    {name: 'Michael', email: 'michael@michael.com', role: 'Accounting'},
     {name: 'Randi', email: 'randi@randi.com', role: 'Marketing'},
 ]
 
@@ -30,26 +29,26 @@ function NewMemberForm() {
             role: values.role.trim(),
         }
         setMemberInfo([...memberInfo, newMember])
-        setValues([initialValues])
+        setValues(initialValues)
     }
 
     return(
         <div className = 'formContainer'>
             <h1>Add New Member</h1>
             {
-                memberInfo.map((member) =>{
-                    return <div key={member.id}>{member.name}'s email is {member.email} and works in the {member.role} department</div>
+                memberInfo.map((member, idx) =>{
+                    return <div key={idx}>{member.name} - Email: {member.email} Role: {member.role} </div>
                 })
             }
             <form onSubmit={submit}>
                 <input name='name' type='text' values={values.name} onChange={change}/>
-                <input email='email' type='email' values={values.email} onChange={change}/>
-                <input role = 'role' type='text' values={values.role} onChange={change}/>
+                <input name='email' type='email' values={values.email} onChange={change}/>
+                <input name = 'role' type='text' values={values.role} onChange={change}/>
                 <button>Submit</button>
             </form>
         </div>
     )
 }
 
-export default Forms
+export default NewMemberForm
 
